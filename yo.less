@@ -1,0 +1,108 @@
+@maintext: #444;
+@comments: #888;
+@linkcolor: #03a9f4;
+@young: #fbbf45;
+@old: #65387d;
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: @maintext;
+}
+header, footer, .wrapper{
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.selector{
+  text-align: center;
+}
+header{
+  .selector;
+  .title{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .description{
+    color: @comments;
+    font-weight: lighter;
+  }
+}
+.wrapper{
+  span{
+    margin-left: 10px;
+
+  }
+  #chart{
+    .xaxis, .yaxis{
+      font-size: 12px;
+      path{
+        display: none;
+      }
+    }
+    .yaxis line { stroke: #ddd;}
+    .xaxis line { stroke: #000;}
+
+    .baseline line{
+      stroke: #000;
+      stroke-width: 2px;
+      z-index: 10;
+    }
+    path#older.original{
+      fill: @old;
+      opacity: 1;
+    }
+    path#younger.original{
+      fill: @young;
+      opacity: 1;
+    }
+    path#older.classical{
+      fill: none;
+      stroke: @old;
+      opacity: 0.9;
+      stroke-width: 3px;
+    }
+    path#younger.classical{
+      fill: none;
+      stroke: @young;
+      opacity: 0.9;
+      stroke-width: 3px;
+    }
+    .comments.older{
+      stroke: @old;
+    }
+    .comments.younger{
+      stroke: @young;
+    }
+    .overlay {
+      fill: none;
+      pointer-events: all;
+    }
+    .focus line {
+        stroke: #000;
+        stroke-width: .7px;
+    }
+    .focus text.agevalue {
+        fill: #ccc;
+    }
+
+  }
+}
+footer{
+  margin-top: 10px;
+  span{
+    font-weight: lighter;
+    color: @comments;
+  }
+  p{
+    margin: 0 5px;
+  }
+  a{
+    color: @comments;
+    font-weight: lighter;
+    text-decoration: none;
+    &:hover{
+      color: @linkcolor;
+    }
+  }
+}
