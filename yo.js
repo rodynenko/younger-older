@@ -1,6 +1,7 @@
 var sex = 'all',
     territory = 'city+village',
     visual = 'original',
+    year = '2015',
     margin = {top:20, right: 20, bottom: 50, left: 65},
     width = 600 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
@@ -18,12 +19,12 @@ var xAxis = d3.svg.axis().scale(x).tickSize(10).orient("bottom"),
     };
 
 var younger = {
-      original: d3.svg.area().x(function(d){ return x(d.age); }).y0(y[visual](0)).y1(function(d){ return y[visual](d[territory+'_'+sex+'_younger']); }),
-      classical: d3.svg.line().x(function(d){ return x(d.age); }).y(function(d){ return y[visual](d[territory+'_'+sex+'_younger']); })
+      original: d3.svg.area().x(function(d){ return x(d.age); }).y0(y[visual](0)).y1(function(d){ return y[visual](d[year+'_'+territory+'_'+sex+'_younger']); }),
+      classical: d3.svg.line().x(function(d){ return x(d.age); }).y(function(d){ return y[visual](d[year+'_'+territory+'_'+sex+'_younger']); })
     },
     older = {
-      original: d3.svg.area().x(function(d){ return x(d.age); }).y0(y[visual](0)).y1(function(d){ return y[visual](-d[territory+'_'+sex+'_older']); }),
-      classical: d3.svg.line().x(function(d){ return x(d.age); }).y(function(d){ return y[visual](d[territory+'_'+sex+'_older']); })
+      original: d3.svg.area().x(function(d){ return x(d.age); }).y0(y[visual](0)).y1(function(d){ return y[visual](-d[year+'_'+territory+'_'+sex+'_older']); }),
+      classical: d3.svg.line().x(function(d){ return x(d.age); }).y(function(d){ return y[visual](d[year+'_'+territory+'_'+sex+'_older']); })
     };
 
 var svg = d3.select('#chart').append('svg')
@@ -32,7 +33,7 @@ var svg = d3.select('#chart').append('svg')
           .append('g')
             .attr('transform', 'translate('+margin.left+','+margin.top+')');
 
-d3.csv('younger-older-ukraine.csv', function(err, d){
+d3.csv('younger-older-ukraine-2001-2015.csv', function(err, d){
   if (err) throw err;
   //axis
   svg.append('g')
@@ -90,6 +91,7 @@ d3.csv('younger-older-ukraine.csv', function(err, d){
 
   //set action on selector change
   d3.selectAll("select").on("change", function() {
+    year = document.getElementById('year').value;
     sex = document.getElementById('sex').value;
     territory = document.getElementById('territory').value;
     visual = document.getElementById('visual').value;
@@ -218,21 +220,21 @@ d3.csv('younger-older-ukraine.csv', function(err, d){
         classical: 1
       },
       d0 = d[i - 1],
-      d1 = d  [i],
+      d1 = d[i],
       dn = x0 - d0.age > d1.age - x0 ? d1 : d0;
-    focus.attr("transform", "translate(" + x(dn.age) + "," + y[visual](coef[visual]*dn[territory+'_'+sex+'_older']) + ")");
-    focus.select("text.older_value").text(roundData(dn[territory+'_'+sex+'_older'])+"%");
+    focus.attr("transform", "translate(" + x(dn.age) + "," + y[visual](coef[visual]*dn[year+'_'+territory+'_'+sex+'_older']) + ")");
+    focus.select("text.older_value").text(roundData(dn[year+'_'+territory+'_'+sex+'_older'])+"%");
 
     // Adjust indicator line and values.
     focus.select("line")
-      .attr("y1", y[visual](dn[territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[territory+'_'+sex+'_older']));
+      .attr("y1", y[visual](dn[year+'_'+territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[year+'_'+territory+'_'+sex+'_older']));
     focus.select(".younger_marker")
-      .attr("cy", y[visual](dn[territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[territory+'_'+sex+'_older']) );
+      .attr("cy", y[visual](dn[year+'_'+territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[year+'_'+territory+'_'+sex+'_older']) );
     focus.select("text.younger_value")
-      .attr("y", y[visual](dn[territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[territory+'_'+sex+'_older']))
-      .text(roundData(dn[territory+'_'+sex+'_younger'])+"%");
+      .attr("y", y[visual](dn[year+'_'+territory+'_'+sex+'_younger']) - y[visual](coef[visual]*dn[year+'_'+territory+'_'+sex+'_older']))
+      .text(roundData(dn[year+'_'+territory+'_'+sex+'_younger'])+"%");
     focus.select("text.agevalue")
-      .attr("y", y[visual](y[visual].domain()[0]) - y[visual](coef[visual]*dn[territory+'_'+sex+'_older'])+28)
+      .attr("y", y[visual](y[visual].domain()[0]) - y[visual](coef[visual]*dn[year+'_'+territory+'_'+sex+'_older'])+28)
       .text(dn.age);
   };
 

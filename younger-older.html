@@ -20,18 +20,22 @@
     </header>
     <div class="wrapper">
       <div class="selector">
-        <select id="territory" placeholder="виберіть тип поселень">
-          <option selected value="city+village">Міські поселення+Сільська місцевість</option>
-          <option value="city">Міські поселення</option>
-          <option value="village">Сільська місцевість</option>
+        <select id="year" placeholder="оберіть рік">
+          <option selected value="2015">2015 рік</option>
+          <option value="2001">2001 рік</option>
         </select>
-        <select id="sex" placeholder="виберіть стать">
+        <select id="territory" placeholder="оберіть тип поселень">
+          <option selected value="city+village">Міста+Села</option>
+          <option value="city">Міста</option>
+          <option value="village">Села</option>
+        </select>
+        <select id="sex" placeholder="оберіть стать">
           <option selected value="all">Всі</option>
           <option value="men">Чоловіки</option>
           <option value="women">Жінки</option>
         </select>
         <span>Тип діаграми:</span>
-        <select id="visual" placeholder="виберіть тип відображення">
+        <select id="visual" placeholder="оберіть тип діграми">
           <option selected value="original">Діаграма з областями</option>
           <option value="classical">Лінійний графік</option>
         </select>
@@ -40,7 +44,7 @@
     </div>
     <footer>
       <p>візуалізація: <a target="_blank" href="infographica.com.ua" title="Український блог про інфографіку та візуалізацію даних">infographica.com.ua</a> </p>
-      <p>дані: <span>Всекраїнський перепис населення 2001 року</span></p>
+      <p>дані: <span>ukrcensus.gov.ua, 2001(перепис населення) та 2015 роки</span></p>
       <p>оригінальна робота, що надихнула: <a target="_blank" href="http://flowingdata.com/2016/05/10/who-is-older-and-younger-than-you/">Who is Older and Younger than You</a></p>
     </footer>
     <script type="text/javascript" src="yo.js"></script>
