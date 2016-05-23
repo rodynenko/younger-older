@@ -1,8 +1,48 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>На скільки ви старі</title>
+    <meta charset="utf-8">
+    <title>Скільки українців молодші/доросліші за вас - Infographica.com.ua</title>
+    <meta name="description" content="Візуалізація кількості українців молодші/доросліші за вас">
+    <meta name="keywords" content="україна, вік, старші, дорослі, infographica.com.ua">
+    <meta property="og:title" content="Скільки українців молодші/доросліші за вас">
+    <meta property="og:image" content="younger-older-img.png">
+    <meta property="og:description" content="Візуалізація кількості українців молодші/доросліші за вас">
+    <!--<link rel="stylesheet/less" href="yo.less">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/less.js/2.6.1/less.min.js"></script>-->
+    <link rel="stylesheet" href="yo.css">
+    <script src="d3.min.js" charset="utf-8"></script>
   </head>
   <body>
+    <header>
+      <p class="title">Скільки українців молодші/доросліші за вас</p>
+      <p class="description">Глобалізація та сучасні технології збільшили швидкість життя - може скластися враження, що ви щось не встигли. В такий момент варто згадати, що ви ще молодші за ... % населення України :)</p>
+    </header>
+    <div class="wrapper">
+      <div class="selector">
+        <select id="territory" placeholder="виберіть тип поселень">
+          <option selected value="city+village">Міські поселення+Сільська місцевість</option>
+          <option value="city">Міські поселення</option>
+          <option value="village">Сільська місцевість</option>
+        </select>
+        <select id="sex" placeholder="виберіть стать">
+          <option selected value="all">Всі</option>
+          <option value="men">Чоловіки</option>
+          <option value="women">Жінки</option>
+        </select>
+        <span>Тип діаграми:</span>
+        <select id="visual" placeholder="виберіть тип відображення">
+          <option selected value="original">Діаграма з областями</option>
+          <option value="classical">Лінійний графік</option>
+        </select>
+      </div>
+      <div id="chart"></div>
+    </div>
+    <footer>
+      <p>візуалізація: <a target="_blank" href="infographica.com.ua" title="Український блог про інфографіку та візуалізацію даних">infographica.com.ua</a> </p>
+      <p>дані: <span>Всекраїнський перепис населення 2001 року</span></p>
+      <p>оригінальна робота, що надихнула: <a target="_blank" href="http://flowingdata.com/2016/05/10/who-is-older-and-younger-than-you/">Who is Older and Younger than You</a></p>
+    </footer>
+    <script type="text/javascript" src="yo.js"></script>
   </body>
 </html>
